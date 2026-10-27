@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.google.android.gms.wallet.PaymentsClient;
 
 public class CartFragment extends Fragment {
+    //
     View view;
 
     @Nullable

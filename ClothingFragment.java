@@ -19,6 +19,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 public class ClothingFragment extends Fragment {
+    //
     private RecyclerView recyclerView;
     private RecyclerAdapter.RecyclerViewClickListener listener;
     public static ArrayList<Model> clothingList = new ArrayList<Model>();

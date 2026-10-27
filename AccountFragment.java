@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class AccountFragment extends Fragment {
+    //
     View view;
     Button btnPickImage;
     ImageView imageView;

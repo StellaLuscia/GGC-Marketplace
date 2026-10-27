@@ -19,6 +19,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 public class ElectronicsFragment extends Fragment {
+    //
     private RecyclerView recyclerView;
     private RecyclerAdapter.RecyclerViewClickListener listener;
     public static ArrayList<Model> electronicsList = new ArrayList<Model>();
