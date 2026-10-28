@@ -1,11 +1,15 @@
 package com.example.ggc_marketplace;
 
+import static android.app.PendingIntent.getActivity;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,22 +35,36 @@ public class ListingDetailsActivity extends AppCompatActivity {
         setUpViews();
 
         //Default values assigned
-        String name = "Name not set!";
-        String desc = "Price not set!";
-        int image = 0;
+        String price, name, cat;
+        int image;
 
         //Grabs information from each individual listing to pass to the details activity
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
+            price = extras.getString("price");
             name = extras.getString("name");
-            desc = extras.getString("price");
+            cat = extras.getString("type");
             image = getIntent().getIntExtra("image", 0);
+        } else {
+            price = "Price not set!";
+            name = "Name not set!";
+            cat = "Category not set!";
+            image = 0;
         }
 
         //Attaches above information to details activity's layout to view listing's image, name, and price
         txt.setText(name);
-        txt2.setText(desc);
+        txt2.setText(price);
         img.setImageResource(image);
+
+        Button wishlistBtn = findViewById(R.id.wishlistBtn);
+        wishlistBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                WishlistFragment.wishlistArrayList.add(new Model(price, name, image, cat));
+                Toast.makeText(getApplicationContext(), "Added to Wishlist!", Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
     //Sets up focus to later pass image, name, and price information to listing details activity's layout

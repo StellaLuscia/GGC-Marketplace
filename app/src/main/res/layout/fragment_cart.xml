@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="60dp"
         android:layout_marginStart="10dp"
-        android:text="Maybe use database here?"
+        android:text="Replace me"
         android:textSize="20sp"
         />
 
