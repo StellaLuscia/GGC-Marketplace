@@ -34,11 +34,10 @@ public class ListingDetailsActivity extends AppCompatActivity {
 
         setUpViews();
 
-        //Default values assigned
         String price, name, cat;
         int image;
 
-        //Grabs information from each individual listing to pass to the details activity
+        //Grabs information from each individual listing to later pass to the ListingDetailsActivity layout and Wishlist and Cart fragment layouts
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             price = extras.getString("price");
@@ -52,22 +51,32 @@ public class ListingDetailsActivity extends AppCompatActivity {
             image = 0;
         }
 
-        //Attaches above information to details activity's layout to view listing's image, name, and price
+        //Attaches above information to ListingDetailsActivity's layout to view listing's image, name, and price
         txt.setText(name);
         txt2.setText(price);
         img.setImageResource(image);
 
+        //Setting up add to wishlist button functionality - uses arrayList from WishlistFragment & passes the same "price," "name," "image," and "category" values assigned above
         Button wishlistBtn = findViewById(R.id.wishlistBtn);
         wishlistBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 WishlistFragment.wishlistArrayList.add(new Model(price, name, image, cat));
-                Toast.makeText(getApplicationContext(), "Added to Wishlist!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Added to Wishlist!", Toast.LENGTH_SHORT).show();
             }
         });
 
+        //Setting up add to cart button functionality - uses arrayList from CartFragment & passes the same "price," "name," "image," and "category" values assigned above
+        Button cartBtn = findViewById(R.id.cartBtn);
+        cartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CartFragment.cartArrayList.add(new Model(price, name, image, cat));
+                Toast.makeText(getApplicationContext(), "Added to Cart!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
-    //Sets up focus to later pass image, name, and price information to listing details activity's layout
+    //Sets up focus to later pass image, name, and price information to ListingDetailsActivity's layout
     private void setUpViews() {
         img = (ImageView) findViewById(R.id.listing_img);
         txt = (TextView) findViewById(R.id.listing_name);

@@ -67,10 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="80dp"
             android:padding="5dp">
-
         </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

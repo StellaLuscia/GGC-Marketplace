@@ -20,6 +20,7 @@ public class Model {
     public String getPrice() {
         return price;
     }
+
     public void setPrice(String price) {
         this.price = price;
     }
@@ -39,11 +40,9 @@ public class Model {
     public void setImage(int image) {
         this.image = image;
     }
-
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
     }

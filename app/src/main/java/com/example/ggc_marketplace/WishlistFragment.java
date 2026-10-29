@@ -18,10 +18,12 @@ import android.widget.Button;
 import java.util.ArrayList;
 
 public class WishlistFragment extends Fragment {
+    //Fragment follows similar setup to RecyclerHomeFragment
     View view;
     private RecyclerView recyclerView;
     private RecyclerAdapter.RecyclerViewClickListener listener;
     public static ArrayList<Model> wishlistArrayList = new ArrayList<Model>();
+    //wishlistArrayList objects previously initialized in ListingDetailsActivity
 
     @Nullable
     @Override
@@ -36,6 +38,7 @@ public class WishlistFragment extends Fragment {
         return view;
     }
 
+    //Sets up recycler view to display wishlist listings
     private void setAdapter() {
         setOnClickListener();
         RecyclerAdapter adapter = new RecyclerAdapter(wishlistArrayList, listener);
@@ -45,6 +48,7 @@ public class WishlistFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
 
+    //Used to view listing details, just like in RecyclerHomeFragment
     private void setOnClickListener() {
         listener = new RecyclerAdapter.RecyclerViewClickListener() {
             @Override

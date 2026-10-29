@@ -1,53 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".app.src.main.java.com.example.ggc_marketplace.CartFragment"
-    android:background="#BCFFB5"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".CartFragment"
+    android:background="#BCFFB5">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Cart Page/Fragment"
-        android:textSize="25sp"
-        />
+    <!-- TODO: Refine fragment design -->
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="10dp"
-        android:text="Replace me"
-        android:textSize="20sp"
-        />
-
-    <!--Temp Pay Button, Visible-->
     <LinearLayout
+        android:id="@+id/topLL"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:layout_marginBottom="85dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/tempPayBtn"
-            android:layout_width="wrap_content"
+        <!--Can replace this to refine design-->
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Temp Checkout Button"
-            />
+            android:layout_marginStart="5dp"
+            android:text="Cart Page/Fragment"
+            android:textSize="25sp" />
+
+        <!--Temporary message, remove when finished-->
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Empty until you add something. Try adding!"
+            android:textSize="18sp"
+            android:textStyle="italic" />
 
     </LinearLayout>
 
-    <!--Pay Button, Not Visible Yet-->
-    <com.google.android.gms.wallet.button.PayButton
-        android:id="@+id/googlePayButton"
-        android:layout_marginTop="580dp"
-        android:padding="10dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topLL">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="185dp"
+            android:padding="5dp">
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btnLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:layout_marginBottom="80dp"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/priceTotal"
+            android:background="#9DDE90"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            android:gravity="center"
+            android:text=""
+            android:textStyle="bold"
+            android:textColor="#357C35"
+            android:textSize="18sp"
+            />
+
+        <!--Has some spacing away from bottom navigation bar-->
+        <Button
+            android:id="@+id/PayBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Proceed to Checkout" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

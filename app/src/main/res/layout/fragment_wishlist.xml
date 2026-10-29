@@ -7,14 +7,32 @@
     tools:context=".WishlistFragment"
     android:background="#FFB5F5">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Refine fragment design -->
+
+    <!--Can replace this to refine design-->
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:text="Wishlist Page/Fragment"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--Temporary message, remove when finished-->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="10dp"
+        android:text="Empty until you add something. Try adding!"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,7 +54,5 @@
             android:padding="5dp">
 
         </androidx.recyclerview.widget.RecyclerView>
-
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
