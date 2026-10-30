@@ -64,6 +64,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     public int getItemCount() {
         return list.size();
     }
+
+    // Returns the listing that was clicked.
+    public Model getItem(int position) {
+        return list.get(position);
+    }
+
     public interface RecyclerViewClickListener {
         void onClick(View v, int position);
     }

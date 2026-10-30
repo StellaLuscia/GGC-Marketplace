@@ -21,6 +21,7 @@ import java.util.ArrayList;
 public class RecyclerHomeFragment extends Fragment{
     //Main fragment/home page to display all listings
     private RecyclerView recyclerView;
+    private RecyclerAdapter adapter;
     private RecyclerAdapter.RecyclerViewClickListener listener;
     public static ArrayList<Model> recyclingArrayList = new ArrayList<Model>();
 
@@ -92,7 +93,7 @@ public class RecyclerHomeFragment extends Fragment{
     //Sets up recycler view as grid w/ 2 columns & passes arraylist along with onClickListener to view individual listing info when listing is clicked
     private void setAdapter() {
         setOnClickListener();
-        RecyclerAdapter adapter = new RecyclerAdapter(recyclingArrayList, listener);
+        adapter = new RecyclerAdapter(recyclingArrayList, listener);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -104,13 +105,30 @@ public class RecyclerHomeFragment extends Fragment{
         listener = new RecyclerAdapter.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
+                Model selectedItem = adapter.getItem(position);
                 Intent intent = new Intent(getActivity().getApplicationContext(), ListingDetailsActivity.class);
-                intent.putExtra("name", recyclingArrayList.get(position).getName());
-                intent.putExtra("price", recyclingArrayList.get(position).getPrice());
-                intent.putExtra("image", recyclingArrayList.get(position).getImage());
+                intent.putExtra("name", selectedItem.getName());
+                intent.putExtra("price", selectedItem.getPrice());
+                intent.putExtra("image", selectedItem.getImage());
                 startActivity(intent);
             }
         };
+    }
+
+    // Shows listings that match the entered name or category.
+    public void filterList(String searchText) {
+        ArrayList<Model> filteredList = new ArrayList<Model>();
+        String search = searchText.toLowerCase().trim();
+
+        for (Model item : recyclingArrayList) {
+            if (item.getName().toLowerCase().contains(search)
+                    || item.getType().toLowerCase().contains(search)) {
+                filteredList.add(item);
+            }
+        }
+
+        adapter = new RecyclerAdapter(filteredList, listener);
+        recyclerView.setAdapter(adapter);
     }
 
     //List of all the products - unorganized - category fragments used to organize them
