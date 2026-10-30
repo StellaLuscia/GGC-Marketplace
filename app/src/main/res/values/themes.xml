@@ -1,12 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.GGC_Marketplace" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="colorPrimary">#000000</item>
-        <item name="colorPrimaryVariant">#2D6FFF</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
+
+    <!-- Base Application Theme -->
+    <style name="Base.Theme.GGC_Marketplace"
+        parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <!-- GGC Marketplace Color Scheme -->
+        <item name="colorPrimary">#263F35</item>
+        <item name="colorPrimaryDark">#F5F3EA</item>
+        <item name="colorAccent">#263F35</item>
+
+        <!-- ActionBar Styling -->
+        <item name="actionMenuTextColor">#263F35</item>
+
+        <!-- Text Styling -->
+        <item name="android:textColorPrimary">#263F35</item>
+
+        <!-- Status Bar -->
+        <item name="android:statusBarColor">#F5F3EA</item>
+        <item name="android:windowLightStatusBar">true</item>
+
     </style>
 
-    <style name="Theme.GGC_Marketplace" parent="Base.Theme.GGC_Marketplace" />
+    <style name="Theme.GGC_Marketplace"
+        parent="Base.Theme.GGC_Marketplace" />
+
 </resources>

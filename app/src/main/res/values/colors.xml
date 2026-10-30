@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+
+    <!-- Basic Colors -->
+    <color name="black">#263F35</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- GGC Marketplace Theme -->
+    <color name="cream">#F5F3EA</color>
+    <color name="forest_green">#263F35</color>
+    <color name="sage_green">#78977B</color>
+    <color name="light_sage">#D9E4D8</color>
+    <color name="dark_green">#357C35</color>
+
+    <!-- Search Bar Colors -->
+    <color name="search_background">#F5F3EA</color>
+    <color name="search_text">#263F35</color>
+    <color name="search_hint">#78977B</color>
+
 </resources>
