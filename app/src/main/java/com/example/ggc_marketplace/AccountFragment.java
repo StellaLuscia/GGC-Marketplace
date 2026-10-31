@@ -20,13 +20,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class AccountFragment extends Fragment {
     //
     View view;
     Button btnPickImage;
+    Button btnEditDescription;
     ImageView imageView;
+    TextView txtDescription;
     ActivityResultLauncher<Intent> resultLauncher;
 
     @Nullable
@@ -37,6 +40,10 @@ public class AccountFragment extends Fragment {
 
         btnPickImage = view.findViewById(R.id.btnPickImage);
         imageView = view.findViewById(R.id.imageView);
+        btnEditDescription = view.findViewById(R.id.btnEditDescription);
+        txtDescription = view.findViewById(R.id.txtDescription);
+
+        btnEditDescription.setOnClickListener(v -> editDescription());
 
         registerResult();
         btnPickImage.setOnClickListener(view -> pickImage());
@@ -50,7 +57,7 @@ public class AccountFragment extends Fragment {
         Intent intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
         resultLauncher.launch(intent);
     }
-    //Pushes image from pickImage() method above into fragment's imageView to display new profile
+
     private void registerResult() {
         resultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -58,11 +65,61 @@ public class AccountFragment extends Fragment {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         try {
-                            Uri imageUri = result.getData().getData();
-                            imageView.setImageURI(imageUri);
-                        } catch(Exception e) {}
+                            if (result.getResultCode() == requireActivity().RESULT_OK
+                                    && result.getData() != null) {
+
+                                Uri imageUri = result.getData().getData();
+                                if (imageUri != null) {
+                                    imageView.setImageURI(imageUri);
+                                }
+                            }
+                        } catch (Exception e) {
+                            Toast.makeText(requireContext(),
+                                    "Unable to select image",
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
         );
+    }
+
+    // Edit profile description
+    private void editDescription() {
+
+        android.widget.EditText editText =
+                new android.widget.EditText(requireContext());
+
+        editText.setText(txtDescription.getText().toString());
+        editText.setHint("Enter your profile description");
+
+        new androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                .setTitle("Edit Profile Description")
+                .setView(editText)
+
+                .setPositiveButton("Save", (dialog, which) -> {
+
+                    String description = editText.getText().toString().trim();
+
+                    if (!description.isEmpty()) {
+
+                        txtDescription.setText(description);
+
+                        Toast.makeText(
+                                requireContext(),
+                                "Profile description updated!",
+                                Toast.LENGTH_SHORT
+                        ).show();
+
+                    } else {
+                        Toast.makeText(
+                                requireContext(),
+                                "Description cannot be empty!",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    }
+                })
+
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 }

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.wallet.PaymentsClient;
@@ -24,6 +25,7 @@ public class CartFragment extends Fragment {
     //Fragment follows similar setup to WishlistFragment
     View view;
     private TextView priceTotalView;
+    private Button payBtn;
     private RecyclerView recyclerView;
     private RecyclerAdapter.RecyclerViewClickListener listener;
     public static ArrayList<Model> cartArrayList = new ArrayList<Model>();
@@ -37,10 +39,12 @@ public class CartFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycleView);
         priceTotalView = (TextView) view.findViewById(R.id.priceTotal);
+        payBtn = view.findViewById(R.id.PayBtn);
 
         setAdapter();
 
         calculateTotalPrice(cartArrayList);
+        setupCheckoutButton();
 
         return view;
     }
@@ -75,19 +79,56 @@ public class CartFragment extends Fragment {
         int price = 0;
         int totalPrice = 0;
 
-        if(list != null) {
-            for(Model listing : list) {
+        if (list != null) {
+            for (Model listing : list) {
                 priceString = listing.getPrice();
+
                 try {
                     price = Integer.parseInt(priceString.replaceAll("[^0-9]", ""));
-                }
-                catch(NumberFormatException e) {
+                } catch (NumberFormatException e) {
                     price = 0;
                 }
+
                 totalPrice += price;
             }
-            displayTxt = String.valueOf(totalPrice);
-            priceTotalView.setText(String.format("Total Price: $%s", displayTxt));
         }
+
+        displayTxt = String.valueOf(totalPrice);
+        priceTotalView.setText(String.format("Total Price: $%s", displayTxt));
+    }
+
+    // Checkout confirmation dialogue
+    private void setupCheckoutButton() {
+
+        payBtn.setOnClickListener(v -> {
+
+            if (cartArrayList.isEmpty()) {
+
+                new androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                        .setTitle("Empty Cart")
+                        .setMessage("Your cart is empty. Please add items before checkout.")
+                        .setPositiveButton("OK", (dialog, which) -> dialog.dismiss())
+                        .show();
+
+            } else {
+
+                new androidx.appcompat.app.AlertDialog.Builder(requireContext())
+                        .setTitle("Confirm Checkout")
+                        .setMessage("Are you sure you want to proceed with your purchase?\n\n"
+                                + priceTotalView.getText().toString())
+                        .setPositiveButton("Confirm", (dialog, which) -> {
+
+                            Intent intent = new Intent(
+                                    requireContext(),
+                                    CheckoutActivity.class
+                            );
+
+                            startActivity(intent);
+
+                        })
+                        .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                        .show();
+            }
+        });
     }
 }

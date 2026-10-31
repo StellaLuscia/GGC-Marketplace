@@ -63,21 +63,46 @@
                     android:textColor="#263F35"
                     android:layout_marginTop="15dp"/>
 
-                <!-- Profile Description -->
+                <!-- Profile Description Heading -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Manage your profile picture"
+                    android:text="About Me"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#263F35"
+                    android:layout_marginTop="20dp"/>
+
+                <!-- Editable Profile Description -->
+                <TextView
+                    android:id="@+id/txtDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tell us a little about yourself!"
                     android:textSize="14sp"
                     android:textColor="#78977B"
-                    android:layout_marginTop="5dp"/>
+                    android:gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:padding="10dp"/>
 
-                <!-- Edit Button -->
+                <!-- Edit Description Button -->
+                <Button
+                    android:id="@+id/btnEditDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Edit Description"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:backgroundTint="#263F35"/>
+
+                <!-- Edit Profile Picture Button -->
                 <Button
                     android:id="@+id/btnPickImage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:text="Edit Profile Picture"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
