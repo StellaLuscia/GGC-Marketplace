@@ -31,14 +31,6 @@
             android:textStyle="bold"
             android:textColor="#263F35"/>
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="Empty until you add something. Try adding!"
-            android:textSize="14sp"
-            android:textColor="#78977B"/>
 
     </LinearLayout>
 
